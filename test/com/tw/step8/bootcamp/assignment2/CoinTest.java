@@ -8,7 +8,7 @@ class CoinTest {
     @Test
     void shouldReturnTail(){
         Coin coin = new Coin();
-        String outcome = coin.flip();
-        assertEquals("Tails", outcome);
+        CoinFace outcome = coin.flip();
+        assertTrue(CoinFace.TAILS.equals(outcome));
     }
 }
