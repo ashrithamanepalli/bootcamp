@@ -7,32 +7,32 @@ import static org.junit.jupiter.api.Assertions.*;
 class ChanceTest {
 
     @Test
-    void shouldGiveChanceOfBothEventsOccurring() {
-        Chance chanceOfCoin = new Chance(0.5);
-        Chance chanceOfAnotherCoin = new Chance(0.5);
+    void shouldGiveChanceOfBothEventsOccurring() throws InvalidProbabilityException {
+        Chance chanceOfCoin = Chance.createChance(0.5);
+        Chance chanceOfAnotherCoin = Chance.createChance(0.5);
 
-        Chance expected = new Chance(0.25);
+        Chance expected = Chance.createChance(0.25);
         Chance actual = chanceOfCoin.and(chanceOfAnotherCoin);
 
         assertEquals(actual,expected);
     }
 
     @Test
-    void shouldGiveChanceOfEitherOrBothEvents() {
-        Chance chanceOfCoin = new Chance(0.5);
-        Chance chanceOfAnotherCoin = new Chance(0.5);
+    void shouldGiveChanceOfEitherOrBothEvents() throws InvalidProbabilityException {
+        Chance chanceOfCoin = Chance.createChance(0.5);
+        Chance chanceOfAnotherCoin = Chance.createChance(0.5);
 
-        Chance expected = new Chance(0.75);
+        Chance expected = Chance.createChance(0.75);
         Chance actual = chanceOfCoin.or(chanceOfAnotherCoin);
 
         assertEquals(expected,actual);
     }
 
     @Test
-    void shouldGiveComplementOfEvent(){
-        Chance chanceOfCoin = new Chance(0.25);
+    void shouldGiveComplementOfEvent() throws InvalidProbabilityException {
+        Chance chanceOfCoin = Chance.createChance(0.25);
 
-        Chance expected = new Chance(0.75);
+        Chance expected = Chance.createChance(0.75);
 
         assertEquals(expected,chanceOfCoin.complement());
     }
