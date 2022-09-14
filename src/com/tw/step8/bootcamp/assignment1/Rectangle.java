@@ -1,4 +1,4 @@
-package com.tw.step8.bootcamp;
+package com.tw.step8.bootcamp.assignment1;
 
 public class Rectangle {
 
