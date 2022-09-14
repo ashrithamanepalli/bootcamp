@@ -6,18 +6,27 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RectangleTest {
     @Test
-    void shouldReturnArea(){
-        Dimension dimension = new Dimension(2, 3);
-        Rectangle rectangle = new Rectangle(dimension);
-        double expected = 6;
-        assertEquals(expected, rectangle.area());
+    void shouldReturnArea() {
+        Rectangle rectangle1 = Rectangle.createRectangle(2, 3);
+        Rectangle rectangle2 = Rectangle.createRectangle(2, 3.2);
+
+        double expected1 = 6;
+        double expected2 = 6.4;
+
+        assertEquals(expected1, rectangle1.area());
+        assertEquals(expected2, rectangle2.area());
     }
 
+
     @Test
-    void shouldCalculatePerimeter(){
-        Dimension dimension = new Dimension(2, 3);
-        Rectangle rectangle = new Rectangle(dimension);
-        double expected = 10;
-        assertEquals(expected, rectangle.perimeter());
+    void shouldCalculatePerimeter() {
+        Rectangle rectangle1 = Rectangle.createRectangle(2, 3);
+        Rectangle rectangle2 = Rectangle.createRectangle(2, 3.2);
+
+        double expected1 = 10;
+        double expected2 = 10.4;
+
+        assertEquals(expected1, rectangle1.perimeter());
+        assertEquals(expected2, rectangle2.perimeter());
     }
 }
