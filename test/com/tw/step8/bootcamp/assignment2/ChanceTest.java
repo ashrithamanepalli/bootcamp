@@ -12,7 +12,7 @@ class ChanceTest {
         Chance chanceOfAnotherCoin = new Chance(0.5);
 
         Chance expected = new Chance(0.25);
-        Chance actual = Chance.calculateChanceOfGettingBoth(chanceOfCoin, chanceOfAnotherCoin);
+        Chance actual = chanceOfCoin.and(chanceOfAnotherCoin);
 
         assertEquals(actual,expected);
     }
@@ -23,7 +23,7 @@ class ChanceTest {
         Chance chanceOfAnotherCoin = new Chance(0.5);
 
         Chance expected = new Chance(0.75);
-        Chance actual = Chance.calculateChanceOfGettingAtLeastOne(chanceOfCoin, chanceOfAnotherCoin);
+        Chance actual = chanceOfCoin.or(chanceOfAnotherCoin);
 
         assertEquals(expected,actual);
     }
