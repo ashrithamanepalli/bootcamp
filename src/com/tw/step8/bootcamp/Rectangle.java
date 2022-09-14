@@ -2,15 +2,17 @@ package com.tw.step8.bootcamp;
 
 public class Rectangle {
 
-    private double height;
-    private double width;
+    private Dimension dimension;
 
-    public Rectangle(double height, double width) {
-        this.height = height;
-        this.width = width;
+    public Rectangle(Dimension dimension) {
+        this.dimension = dimension;
     }
 
     public double area() {
-        return this.height* this.width;
+        return this.dimension.getHeight() * this.dimension.getWidth();
+    }
+
+    public double perimeter() {
+        return 2 * (this.dimension.getHeight() + this.dimension.getWidth());
     }
 }
