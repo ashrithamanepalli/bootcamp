@@ -16,11 +16,21 @@ class LengthTest {
     }
 
     @Test
-    void shouldCompareLengthGivenInInchesAndCms(){
+    void shouldCompareLengthGivenInInchAndCm(){
         Length rameshHeight = new Length(5, Unit.CM);
         Length sureshHeight = new Length(3, Unit.INCH);
 
         int expected = 1;
+
+        assertEquals(expected, rameshHeight.compare(sureshHeight));
+    }
+
+    @Test
+    void shouldCompareLengthGivenInInchAndMm(){
+        Length rameshHeight = new Length(4, Unit.INCH);
+        Length sureshHeight = new Length(99, Unit.MM);
+
+        int expected = -1;
 
         assertEquals(expected, rameshHeight.compare(sureshHeight));
     }
