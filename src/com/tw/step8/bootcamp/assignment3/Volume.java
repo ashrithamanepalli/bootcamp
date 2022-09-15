@@ -3,7 +3,7 @@ package com.tw.step8.bootcamp.assignment3;
 import com.tw.step8.bootcamp.assignment3.exception.InvalidVolumeException;
 import com.tw.step8.bootcamp.assignment3.unit.VolumeUnit;
 
-public class Volume {
+public class Volume{
     private final double magnitude;
     private final VolumeUnit unit;
 
