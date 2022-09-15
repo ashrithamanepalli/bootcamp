@@ -9,12 +9,12 @@ class ChanceTest {
     @Test
     void shouldGiveChanceOfBothEventsOccurring() throws InvalidProbabilityException {
         Chance chanceOfCoin = Chance.createChance(0.5);
-        Chance chanceOfAnotherCoin = Chance.createChance(0.5);
+        Chance chanceOfAnotherCoin = Chance.createChance(1/6d);
 
-        Chance expected = Chance.createChance(0.25);
+        Chance expected = Chance.createChance(0.083);
         Chance actual = chanceOfCoin.and(chanceOfAnotherCoin);
 
-        assertEquals(actual,expected);
+        assertTrue(actual.isWithinDelta(expected, 0.01));
     }
 
     @Test

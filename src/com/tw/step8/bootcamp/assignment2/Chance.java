@@ -18,11 +18,13 @@ public class Chance {
         return createChance(this.value * anotherChance.value);
     }
 
-    public Chance or(Chance secondChance) throws InvalidProbabilityException {
+    public Chance or(Chance anotherChance) throws InvalidProbabilityException {
         Chance complementOfFirst = this.complement();
-        Chance complementOfSecond = secondChance.complement();
+        Chance complementOfSecond = anotherChance.complement();
 
-        return createChance(1 - (complementOfFirst.value * complementOfSecond.value));
+        Chance intersectionOfComplements = complementOfFirst.and(complementOfSecond);
+
+        return intersectionOfComplements.complement();
     }
 
     public Chance complement() throws InvalidProbabilityException {
@@ -50,5 +52,9 @@ public class Chance {
     public int hashCode() {
         long temp = Double.doubleToLongBits(value);
         return (int) (temp ^ (temp >>> 32));
+    }
+
+    public boolean isWithinDelta(Chance anotherChance, double delta) {
+        return Math.abs(this.value - anotherChance.value) <= delta;
     }
 }
