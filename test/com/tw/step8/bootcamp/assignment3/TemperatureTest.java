@@ -17,11 +17,21 @@ class TemperatureTest {
     }
 
     @Test
-    void shouldReturnOneWhenTemperatureInCelsiusIsGreaterThanFahrenheit(){
+    void shouldReturnMinusOneWhenTemperatureInCelsiusIsGreaterThanFahrenheit(){
         Temperature tempOfWater = Temperature.createTemperature(110, TemperatureUnit.CELSIUS);
         Temperature tempOfMilk = Temperature.createTemperature(212, TemperatureUnit.FAHRENHEIT);
 
         int expected = -1;
+
+        assertEquals(expected, tempOfWater.compare(tempOfMilk));
+    }
+
+    @Test
+    void shouldReturnOneWhenTemperatureInCelsiusIsGreaterThanFahrenheit(){
+        Temperature tempOfWater = Temperature.createTemperature(100, TemperatureUnit.CELSIUS);
+        Temperature tempOfMilk = Temperature.createTemperature(220, TemperatureUnit.FAHRENHEIT);
+
+        int expected = 1;
 
         assertEquals(expected, tempOfWater.compare(tempOfMilk));
     }
