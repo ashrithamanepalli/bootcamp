@@ -1,10 +1,10 @@
 package com.tw.step8.bootcamp.assignment2;
 
 public class Chance {
-    private final double probability;
+    private final double value;
 
-    private Chance(double probability) {
-        this.probability = probability;
+    private Chance(double value) {
+        this.value = value;
     }
 
     public static Chance createChance(double probability) throws InvalidProbabilityException {
@@ -15,18 +15,25 @@ public class Chance {
     }
 
     public Chance and(Chance anotherChance) throws InvalidProbabilityException {
-        return createChance(this.probability * anotherChance.probability);
+        return createChance(this.value * anotherChance.value);
     }
 
     public Chance or(Chance secondChance) throws InvalidProbabilityException {
         Chance complementOfFirst = this.complement();
         Chance complementOfSecond = secondChance.complement();
 
-        return createChance(1 - (complementOfFirst.probability * complementOfSecond.probability));
+        return createChance(1 - (complementOfFirst.value * complementOfSecond.value));
     }
 
     public Chance complement() throws InvalidProbabilityException {
-        return createChance(1 - this.probability);
+        return createChance(1 - this.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Chance{" +
+                "probability=" + value +
+                '}';
     }
 
     @Override
@@ -36,12 +43,12 @@ public class Chance {
 
         Chance chance = (Chance) o;
 
-        return Double.compare(chance.probability, probability) == 0;
+        return Double.compare(chance.value, value) == 0;
     }
 
     @Override
     public int hashCode() {
-        long temp = Double.doubleToLongBits(probability);
+        long temp = Double.doubleToLongBits(value);
         return (int) (temp ^ (temp >>> 32));
     }
 }

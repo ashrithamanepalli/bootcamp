@@ -20,9 +20,9 @@ class ChanceTest {
     @Test
     void shouldGiveChanceOfEitherOrBothEvents() throws InvalidProbabilityException {
         Chance chanceOfCoin = Chance.createChance(0.5);
-        Chance chanceOfAnotherCoin = Chance.createChance(0.5);
+        Chance chanceOfAnotherCoin = Chance.createChance(0.25);
 
-        Chance expected = Chance.createChance(0.75);
+        Chance expected = Chance.createChance(0.625);
         Chance actual = chanceOfCoin.or(chanceOfAnotherCoin);
 
         assertEquals(expected,actual);
@@ -35,5 +35,12 @@ class ChanceTest {
         Chance expected = Chance.createChance(0.75);
 
         assertEquals(expected,chanceOfCoin.complement());
+    }
+
+    @Test
+    void shouldThrowErrorWhenInvalidProbabilityIsGiven() throws InvalidProbabilityException {
+        assertThrows(InvalidProbabilityException.class,()->{
+            Chance.createChance(1.25);
+        },"Given invalid probability 1.25");
     }
 }
