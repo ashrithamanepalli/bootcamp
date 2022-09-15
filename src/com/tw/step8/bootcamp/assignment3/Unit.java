@@ -1,11 +1,11 @@
 package com.tw.step8.bootcamp.assignment3;
 
 public enum Unit {
-    FEET(300),INCH(25),CM(10),MM(1);
+    FEET(12),INCH(1),CM(0.4),MM(0.04);
 
-    public final double mm;
+    public final double baseValue; // base value
 
-    Unit(double mm){
-        this.mm = mm;
+    Unit(double baseValue){
+        this.baseValue = baseValue; // base value
     }
 }
