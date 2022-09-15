@@ -1,26 +1,27 @@
 package com.tw.step8.bootcamp.assignment3;
 
 import com.tw.step8.bootcamp.assignment3.exception.InvalidLengthException;
+import com.tw.step8.bootcamp.assignment3.unit.LengthUnit;
 
 public class Length {
     private final double magnitude;
-    private final Unit unit;
+    private final LengthUnit lengthUnit;
 
-    private Length(double magnitude, Unit unit) {
+    private Length(double magnitude, LengthUnit lengthUnit) {
         this.magnitude = magnitude;
-        this.unit = unit;
+        this.lengthUnit = lengthUnit;
     }
 
-    public static Length createLength(double magnitude, Unit unit) throws InvalidLengthException {
+    public static Length createLength(double magnitude, LengthUnit lengthUnit) throws InvalidLengthException {
         if (magnitude < 0){
             throw new InvalidLengthException(magnitude);
         }
-        return new Length(magnitude, unit);
+        return new Length(magnitude, lengthUnit);
     }
 
     public int compare(Length anotherLength){
-        double lengthInBaseUnit = this.magnitude * getBaseValue();
-        double anotherLengthInBaseUnit = anotherLength.magnitude * anotherLength.getBaseValue();
+        double lengthInBaseUnit = this.getMagnitudeInBaseValue();
+        double anotherLengthInBaseUnit = anotherLength.getMagnitudeInBaseValue();
 
         return Double.compare(anotherLengthInBaseUnit, lengthInBaseUnit);
     }
@@ -31,11 +32,11 @@ public class Length {
 
         double total  = magnitudeOfFirstLength + magnitudeOfSecondLength;
 
-        return Length.createLength(total, Unit.INCH);
+        return Length.createLength(total, LengthUnit.INCH);
     }
 
     private double getBaseValue() {
-        return this.unit.baseValue;
+        return this.lengthUnit.baseValue;
     }
 
     private double getMagnitudeInBaseValue(){
@@ -50,7 +51,7 @@ public class Length {
         Length length = (Length) o;
 
         if (Double.compare(length.magnitude, magnitude) != 0) return false;
-        return unit == length.unit;
+        return lengthUnit == length.lengthUnit;
     }
 
     @Override
@@ -59,7 +60,7 @@ public class Length {
         long temp;
         temp = Double.doubleToLongBits(magnitude);
         result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + unit.hashCode();
+        result = 31 * result + lengthUnit.hashCode();
         return result;
     }
 }
