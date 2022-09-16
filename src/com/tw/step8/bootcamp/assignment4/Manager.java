@@ -1,14 +1,16 @@
 package com.tw.step8.bootcamp.assignment4;
 
-public class Manager {
-    private final ParkingLot[] parkingLots;
+import java.util.ArrayList;
 
-    public Manager(ParkingLot[] parkingLots) {
+public class Manager {
+    private final ArrayList<ParkingLot> parkingLots;
+
+    public Manager(ArrayList<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
 
-    void assignParkingLotToAttendant() {
-//        new Attendant();
+    void assignParkingLotToAttendant(Attendant attendant) {
+        attendant.allocateParkingLots(parkingLots);
     }
 
 }

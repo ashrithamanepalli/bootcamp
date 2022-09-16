@@ -49,6 +49,14 @@ public class ParkingLot {
     }
 
     @Override
+    public String toString() {
+        return "ParkingLot{" +
+                "slots=" + Arrays.toString(slots) +
+                ", vacantSlots=" + vacantSlots +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ParkingLot)) return false;

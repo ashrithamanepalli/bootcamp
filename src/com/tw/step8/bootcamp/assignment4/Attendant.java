@@ -5,27 +5,40 @@ import com.tw.step8.bootcamp.assignment4.exception.NonVacantParkingLotException;
 import java.util.ArrayList;
 
 public class Attendant {
-    private final ParkingLot[] parkingLots;
-    private final ArrayList<Integer> occupiedLotIDs;
+    private ArrayList<ParkingLot> parkingLots;
+    private ArrayList<Integer> occupiedLotIDs;
     private int currentLotID;
 
-    public Attendant(ParkingLot[] parkingLots) {
-        this.parkingLots = parkingLots;
-        this.occupiedLotIDs = new ArrayList<Integer>();
+    public Attendant() {
+        this.parkingLots = new ArrayList<>();
+        this.occupiedLotIDs = new ArrayList<>();
         this.currentLotID = 0;
     }
 
-    void assignLotsToAssistant(Assistant assistant) {
-        assistant.monitorLots(parkingLots);
+    public void allocateParkingLots(ArrayList<ParkingLot> parkingLots) {
+        this.parkingLots.addAll(parkingLots);
+    }
+
+
+    public boolean assignLotsToAssistant(Assistant assistant) {
+        return assistant.monitorLots(parkingLots);
     }
 
     public void park(Car car) {
         try {
-            parkingLots[currentLotID].park(car);
+            parkingLots.get(currentLotID).park(car);
         } catch (NonVacantParkingLotException e) {
             occupiedLotIDs.add(currentLotID);
             currentLotID++;
         }
+    }
+
+    protected int getCurrentLotID() {
+        return currentLotID;
+    }
+
+    protected ArrayList<Integer> getOccupiedLotIDs() {
+        return occupiedLotIDs;
     }
 }
 

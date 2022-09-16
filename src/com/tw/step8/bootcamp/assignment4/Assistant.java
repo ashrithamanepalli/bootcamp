@@ -1,12 +1,15 @@
 package com.tw.step8.bootcamp.assignment4;
 
+import java.util.ArrayList;
+
 public class Assistant {
-    private ParkingLot[] parkingLots;
+    private ArrayList<ParkingLot> parkingLots;
 
     public Assistant() {
     }
 
-    public void monitorLots(ParkingLot[] parkingLots) {
+    public boolean monitorLots(ArrayList<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
+        return true;
     }
 }
