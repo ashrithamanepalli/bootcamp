@@ -13,11 +13,17 @@ public class Temperature {
         return new Temperature(magnitude, unit);
     }
 
-    public int compare(Temperature anotherTemperature){
+    public Rank compare(Temperature anotherTemperature){
         double temperatureInCelsius = this.convertToCelsius();
         double anotherTemperatureInCelsius = anotherTemperature.convertToCelsius();
 
-        return Double.compare(anotherTemperatureInCelsius, temperatureInCelsius);
+        int comparisonResult = Double.compare(anotherTemperatureInCelsius, temperatureInCelsius);
+
+        if (comparisonResult == 0){
+            return Rank.EQUAL;
+        }
+
+        return comparisonResult == 1 ? Rank.GREATER : Rank.LESSER;
     }
 
     public double convertToCelsius(){

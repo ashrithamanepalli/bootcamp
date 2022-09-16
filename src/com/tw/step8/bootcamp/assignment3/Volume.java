@@ -19,11 +19,17 @@ public class Volume{
         return new Volume(magnitude, unit);
     }
 
-    public int compare(Volume anotherVolume){
+    public Rank compare(Volume anotherVolume){
         double volumeInBaseUnit = this.getMagnitudeInBaseValue();
         double anotherVolumeInBaseUnit = anotherVolume.getMagnitudeInBaseValue();
 
-        return Double.compare(anotherVolumeInBaseUnit, volumeInBaseUnit);
+        int comparisonResult = Double.compare(anotherVolumeInBaseUnit, volumeInBaseUnit);
+
+        if (comparisonResult == 0){
+            return Rank.EQUAL;
+        }
+
+        return comparisonResult == 1 ? Rank.GREATER : Rank.LESSER;
     }
 
     public Volume add(Volume anotherVolume) throws InvalidVolumeException {

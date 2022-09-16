@@ -19,11 +19,18 @@ public class Length {
         return new Length(magnitude, lengthUnit);
     }
 
-    public int compare(Length anotherLength){
+    public Rank compare(Length anotherLength){
         double lengthInBaseUnit = this.getMagnitudeInBaseValue();
         double anotherLengthInBaseUnit = anotherLength.getMagnitudeInBaseValue();
 
-        return Double.compare(anotherLengthInBaseUnit, lengthInBaseUnit);
+
+        int comparisonResult = Double.compare(anotherLengthInBaseUnit, lengthInBaseUnit);
+
+        if (comparisonResult == 0){
+            return Rank.EQUAL;
+        }
+
+        return comparisonResult == 1 ? Rank.GREATER : Rank.LESSER;
     }
 
     public Length add(Length anotherLength) throws InvalidLengthException {

@@ -8,21 +8,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LengthTest {
     @Test
-    void shouldCompareLengthGivenInFeetAndInches() throws InvalidLengthException {
+    void shouldAssertEqualIfLengthGivenInFeetAndInchesAreEqual() throws InvalidLengthException {
         Length rameshHeight = Length.createLength(3, LengthUnit.FEET);
         Length sureshHeight = Length.createLength(36, LengthUnit.INCH);
 
-        int expected = 0;
+        Rank expected = Rank.EQUAL;
 
         assertEquals(expected, rameshHeight.compare(sureshHeight));
     }
 
     @Test
-    void shouldCompareLengthGivenInInchAndCm() throws InvalidLengthException {
+    void shouldAssertGreaterIfLengthGivenInInchIsGreaterThanLenghtInCm() throws InvalidLengthException {
         Length rameshHeight = Length.createLength(5, LengthUnit.CM);
         Length sureshHeight = Length.createLength(3, LengthUnit.INCH);
 
-        int expected = 1;
+        Rank expected = Rank.GREATER;
 
         assertEquals(expected, rameshHeight.compare(sureshHeight));
     }
@@ -32,7 +32,7 @@ class LengthTest {
         Length rameshHeight = Length.createLength(4, LengthUnit.INCH);
         Length sureshHeight = Length.createLength(99, LengthUnit.MM);
 
-        int expected = -1;
+        Rank expected = Rank.LESSER;
 
         assertEquals(expected, rameshHeight.compare(sureshHeight));
     }

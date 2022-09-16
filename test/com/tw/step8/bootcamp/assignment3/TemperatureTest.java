@@ -7,31 +7,31 @@ import static org.junit.jupiter.api.Assertions.*;
 class TemperatureTest {
 
     @Test
-    void shouldReturnZeroWhenTemperatureInFahrenheitIsEqualWithCelsius(){
+    void shouldAssertEqualWhenTemperatureInFahrenheitIsEqualWithCelsius(){
         Temperature tempOfWater = Temperature.createTemperature(100, TemperatureUnit.CELSIUS);
         Temperature tempOfMilk = Temperature.createTemperature(212, TemperatureUnit.FAHRENHEIT);
 
-        int expected = 0;
+        Rank expected = Rank.EQUAL;
 
         assertEquals(expected, tempOfWater.compare(tempOfMilk));
     }
 
     @Test
-    void shouldReturnMinusOneWhenTemperatureInCelsiusIsGreaterThanFahrenheit(){
+    void shouldAssertLesserWhenTemperatureInCelsiusIsLesserThanFahrenheit(){
         Temperature tempOfWater = Temperature.createTemperature(110, TemperatureUnit.CELSIUS);
         Temperature tempOfMilk = Temperature.createTemperature(212, TemperatureUnit.FAHRENHEIT);
 
-        int expected = -1;
+        Rank expected = Rank.LESSER;
 
         assertEquals(expected, tempOfWater.compare(tempOfMilk));
     }
 
     @Test
-    void shouldReturnOneWhenTemperatureInCelsiusIsGreaterThanFahrenheit(){
+    void shouldAssertGreaterWhenTemperatureInCelsiusIsGreaterThanFahrenheit(){
         Temperature tempOfWater = Temperature.createTemperature(100, TemperatureUnit.CELSIUS);
         Temperature tempOfMilk = Temperature.createTemperature(220, TemperatureUnit.FAHRENHEIT);
 
-        int expected = 1;
+        Rank expected = Rank.GREATER;
 
         assertEquals(expected, tempOfWater.compare(tempOfMilk));
     }
