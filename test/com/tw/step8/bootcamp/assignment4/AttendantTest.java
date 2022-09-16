@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AttendantTest {
     @Test
     void shouldParkACarWhenVacantParkingLotsAreAvailable() {
-        ParkingLot parkingLot = ParkingLot.createParkingLot(2);
+        ParkingLot parkingLot = ParkingLot.createParkingLot(2, new ParkingNotifier());
         ArrayList<ParkingLot> parkingLots = new ArrayList<>(Arrays.asList(parkingLot));
         Attendant parkingAttendant = new Attendant();
         parkingAttendant.allocateParkingLots(parkingLots);
@@ -22,7 +22,7 @@ class AttendantTest {
 
     @Test
     void shouldModifyCurrentIdAfterCurrentLotGetFilled() {
-        ParkingLot parkingLot = ParkingLot.createParkingLot(2);
+        ParkingLot parkingLot = ParkingLot.createParkingLot(2, new ParkingNotifier());
         ArrayList<ParkingLot> parkingLots = new ArrayList<>(Arrays.asList(parkingLot));
         Attendant parkingAttendant = new Attendant();
         parkingAttendant.allocateParkingLots(parkingLots);
@@ -38,7 +38,7 @@ class AttendantTest {
 
     @Test
     void shouldAssignLotsToAssistant() {
-        ParkingLot parkingLot = ParkingLot.createParkingLot(2);
+        ParkingLot parkingLot = ParkingLot.createParkingLot(2, new ParkingNotifier());
         ArrayList<ParkingLot> parkingLots = new ArrayList<>(Arrays.asList(parkingLot));
         Attendant parkingAttendant = new Attendant();
         parkingAttendant.allocateParkingLots(parkingLots);

@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParkingSpaceTest {
     @Test
     void shouldParkCarInVacantParkingSlot() throws NonVacantParkingLotException {
-        ParkingLot parkingSpace = ParkingLot.createParkingLot(2);
+        ParkingLot parkingSpace = ParkingLot.createParkingLot(2, new ParkingNotifier());
         parkingSpace.park(new Car(1234));
 
         assertArrayEquals(new SlotState[]{SlotState.OCCUPIED, SlotState.VACANT}, parkingSpace.getSlots());
@@ -16,7 +16,7 @@ class ParkingSpaceTest {
 
     @Test
     void shouldThrowNonVacantParkingLotException() throws NonVacantParkingLotException {
-        ParkingLot parkingSpace = ParkingLot.createParkingLot(2);
+        ParkingLot parkingSpace = ParkingLot.createParkingLot(2, new ParkingNotifier());
         parkingSpace.park(new Car(1234));
 
         assertThrows(NonVacantParkingLotException.class, () -> parkingSpace.park(new Car(34)));

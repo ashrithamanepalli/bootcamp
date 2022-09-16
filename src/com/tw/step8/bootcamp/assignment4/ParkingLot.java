@@ -7,17 +7,19 @@ import java.util.Arrays;
 public class ParkingLot {
     public static final int NOT_FOUND = -1;
     private final SlotState[] slots;
+    private final ParkingNotifier notifier;
     private int vacantSlots;
 
-    private ParkingLot(SlotState[] slots) {
+    private ParkingLot(SlotState[] slots, ParkingNotifier notifier) {
         this.slots = slots;
+        this.notifier = notifier;
         this.vacantSlots = this.slots.length;
     }
 
-    public static ParkingLot createParkingLot(int numberOfSlots) {
+    public static ParkingLot createParkingLot(int numberOfSlots, ParkingNotifier notifier) {
         SlotState[] slots = new SlotState[numberOfSlots];
         Arrays.fill(slots, SlotState.VACANT);
-        return new ParkingLot(slots);
+        return new ParkingLot(slots, notifier);
     }
 
     public int findFirstVacantSlot() {
@@ -33,6 +35,9 @@ public class ParkingLot {
         if (vacantSlots > 0) {
             occupySlot();
         }
+        if (vacantSlots / slots.length > 0.8) {
+            sendNotification(ParkingLotState.EIGHTY_PERCENT_FILLED);
+        }
         if (vacantSlots <= 0) {
             throw new NonVacantParkingLotException();
         }
@@ -46,6 +51,10 @@ public class ParkingLot {
 
     public SlotState[] getSlots() {
         return slots;
+    }
+
+    public void sendNotification(ParkingLotState state) {
+        notifier.send(state, this);
     }
 
     @Override
