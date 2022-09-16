@@ -5,11 +5,13 @@ import com.tw.step8.bootcamp.assignment3.unit.LengthUnit;
 
 public class Length {
     private final double magnitude;
-    private final LengthUnit lengthUnit;
+    private final LengthUnit unit;
 
-    private Length(double magnitude, LengthUnit lengthUnit) {
+
+
+    private Length(double magnitude, LengthUnit unit) {
         this.magnitude = magnitude;
-        this.lengthUnit = lengthUnit;
+        this.unit = unit;
     }
 
     public static Length createLength(double magnitude, LengthUnit lengthUnit) throws InvalidLengthException {
@@ -39,15 +41,11 @@ public class Length {
 
         double total  = magnitudeOfFirstLength + magnitudeOfSecondLength;
 
-        return Length.createLength(total, LengthUnit.INCH);
-    }
-
-    private double getBaseValue() {
-        return this.lengthUnit.baseValue;
+        return Length.createLength(total, this.unit.getBaseUnit());
     }
 
     private double getMagnitudeInBaseValue(){
-        return this.magnitude * this.getBaseValue();
+        return this.unit.convertToBaseValue(this.magnitude);
     }
 
     @Override
@@ -58,7 +56,7 @@ public class Length {
         Length length = (Length) o;
 
         if (Double.compare(length.magnitude, magnitude) != 0) return false;
-        return lengthUnit == length.lengthUnit;
+        return unit == length.unit;
     }
 
     @Override
@@ -67,7 +65,7 @@ public class Length {
         long temp;
         temp = Double.doubleToLongBits(magnitude);
         result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + lengthUnit.hashCode();
+        result = 31 * result + unit.hashCode();
         return result;
     }
 }

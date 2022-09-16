@@ -38,7 +38,7 @@ public class Volume{
 
         double total  = magnitudeOfFirstVolume + magnitudeOfSecondVolume;
 
-        return Volume.createVolume(total, VolumeUnit.LITER);
+        return Volume.createVolume(total, this.unit.getBaseUnit());
     }
 
     @Override
@@ -49,12 +49,8 @@ public class Volume{
                 '}';
     }
 
-    private double getBaseValue() {
-        return this.unit.baseValue;
-    }
-
     private double getMagnitudeInBaseValue(){
-        return this.magnitude * this.getBaseValue();
+        return this.unit.convertToBaseValue(this.magnitude);
     }
 
     @Override

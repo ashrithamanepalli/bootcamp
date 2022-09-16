@@ -1,5 +1,7 @@
 package com.tw.step8.bootcamp.assignment3;
 
+import com.tw.step8.bootcamp.assignment3.unit.TemperatureUnit;
+
 public class Temperature {
     private final double magnitude;
     private final TemperatureUnit unit;
@@ -30,7 +32,7 @@ public class Temperature {
         if (this.unit.equals(TemperatureUnit.CELSIUS)){
             return this.magnitude;
         }
-        return (this.magnitude - 32) * 5/9.0;
+        return this.unit.convertToBaseValue(this.magnitude);
     }
 
 
