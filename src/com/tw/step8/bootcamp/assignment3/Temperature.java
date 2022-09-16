@@ -15,21 +15,21 @@ public class Temperature {
         return new Temperature(magnitude, unit);
     }
 
-    public Rank compare(Temperature anotherTemperature){
+    public Rank compare(Temperature anotherTemperature) {
         double temperatureInCelsius = this.convertToCelsius();
         double anotherTemperatureInCelsius = anotherTemperature.convertToCelsius();
 
         int comparisonResult = Double.compare(anotherTemperatureInCelsius, temperatureInCelsius);
 
-        if (comparisonResult == 0){
+        if (comparisonResult == 0) {
             return Rank.EQUAL;
         }
 
         return comparisonResult == 1 ? Rank.GREATER : Rank.LESSER;
     }
 
-    public double convertToCelsius(){
-        if (this.unit.equals(TemperatureUnit.CELSIUS)){
+    public double convertToCelsius() {
+        if (this.unit.equals(TemperatureUnit.CELSIUS)) {
             return this.magnitude;
         }
         return this.unit.convertToBaseValue(this.magnitude);

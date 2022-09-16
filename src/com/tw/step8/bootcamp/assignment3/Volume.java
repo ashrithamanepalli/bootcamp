@@ -3,7 +3,7 @@ package com.tw.step8.bootcamp.assignment3;
 import com.tw.step8.bootcamp.assignment3.exception.InvalidVolumeException;
 import com.tw.step8.bootcamp.assignment3.unit.VolumeUnit;
 
-public class Volume{
+public class Volume {
     private final double magnitude;
     private final VolumeUnit unit;
 
@@ -13,19 +13,19 @@ public class Volume{
     }
 
     public static Volume createVolume(double magnitude, VolumeUnit unit) throws InvalidVolumeException {
-        if (magnitude < 0){
+        if (magnitude < 0) {
             throw new InvalidVolumeException(magnitude);
         }
         return new Volume(magnitude, unit);
     }
 
-    public Rank compare(Volume anotherVolume){
+    public Rank compare(Volume anotherVolume) {
         double volumeInBaseUnit = this.getMagnitudeInBaseValue();
         double anotherVolumeInBaseUnit = anotherVolume.getMagnitudeInBaseValue();
 
         int comparisonResult = Double.compare(anotherVolumeInBaseUnit, volumeInBaseUnit);
 
-        if (comparisonResult == 0){
+        if (comparisonResult == 0) {
             return Rank.EQUAL;
         }
 
@@ -36,7 +36,7 @@ public class Volume{
         double magnitudeOfFirstVolume = this.getMagnitudeInBaseValue();
         double magnitudeOfSecondVolume = anotherVolume.getMagnitudeInBaseValue();
 
-        double total  = magnitudeOfFirstVolume + magnitudeOfSecondVolume;
+        double total = magnitudeOfFirstVolume + magnitudeOfSecondVolume;
 
         return Volume.createVolume(total, this.unit.getBaseUnit());
     }
@@ -49,7 +49,7 @@ public class Volume{
                 '}';
     }
 
-    private double getMagnitudeInBaseValue(){
+    private double getMagnitudeInBaseValue() {
         return this.unit.convertToBaseValue(this.magnitude);
     }
 

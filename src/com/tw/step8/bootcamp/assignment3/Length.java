@@ -7,44 +7,41 @@ public class Length {
     private final double magnitude;
     private final LengthUnit unit;
 
-
-
     private Length(double magnitude, LengthUnit unit) {
         this.magnitude = magnitude;
         this.unit = unit;
     }
 
     public static Length createLength(double magnitude, LengthUnit lengthUnit) throws InvalidLengthException {
-        if (magnitude < 0){
+        if (magnitude < 0) {
             throw new InvalidLengthException(magnitude);
         }
         return new Length(magnitude, lengthUnit);
     }
 
-    public Rank compare(Length anotherLength){
+    public Rank compare(Length other) {
         double lengthInBaseUnit = this.getMagnitudeInBaseValue();
-        double anotherLengthInBaseUnit = anotherLength.getMagnitudeInBaseValue();
-
+        double anotherLengthInBaseUnit = other.getMagnitudeInBaseValue();
 
         int comparisonResult = Double.compare(anotherLengthInBaseUnit, lengthInBaseUnit);
 
-        if (comparisonResult == 0){
+        if (comparisonResult == 0) {
             return Rank.EQUAL;
         }
 
         return comparisonResult == 1 ? Rank.GREATER : Rank.LESSER;
     }
 
-    public Length add(Length anotherLength) throws InvalidLengthException {
+    public Length add(Length other) throws InvalidLengthException {
         double magnitudeOfFirstLength = this.getMagnitudeInBaseValue();
-        double magnitudeOfSecondLength = anotherLength.getMagnitudeInBaseValue();
+        double magnitudeOfSecondLength = other.getMagnitudeInBaseValue();
 
-        double total  = magnitudeOfFirstLength + magnitudeOfSecondLength;
+        double total = magnitudeOfFirstLength + magnitudeOfSecondLength;
 
         return Length.createLength(total, this.unit.getBaseUnit());
     }
 
-    private double getMagnitudeInBaseValue(){
+    private double getMagnitudeInBaseValue() {
         return this.unit.convertToBaseValue(this.magnitude);
     }
 
