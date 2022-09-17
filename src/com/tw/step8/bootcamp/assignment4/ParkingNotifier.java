@@ -7,6 +7,9 @@ public class ParkingNotifier {
     private Consumer<ParkingLot> consumer;
 
     public ParkingNotifier() {
+        this.state = ParkingLotState.VACANT;
+        this.consumer = parkingLot -> {
+        };
     }
 
     public void intimate(ParkingLot parkingLot) {

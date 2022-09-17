@@ -35,7 +35,8 @@ public class ParkingLot {
         if (vacantSlots > 0) {
             occupySlot();
         }
-        if (vacantSlots / slots.length > 0.8) {
+
+        if ((vacantSlots * 100) / slots.length < 20) {
             sendNotification(ParkingLotState.EIGHTY_PERCENT_FILLED);
         }
         if (vacantSlots <= 0) {
